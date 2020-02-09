@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Button } from "semantic-ui-react";
+import { Card, Icon, Image } from "semantic-ui-react";
 
 const gitHubUserInfoURL = gitHubUserName =>
 	`https://api.github.com/users/${gitHubUserName}`;
+
 class App extends Component {
 	state = {
 		user: {},
@@ -23,14 +26,28 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				<button onClick={this.handleToggle}>Toggle User</button>
+				<Button onClick={this.handleToggle}>Toggle User</Button>
 				{this.state.active && (
-					<>
-						<img src={this.state.user.avatar_url} alt="user profile" />
-						<h1>{this.state.user.name}</h1>
-						<p>Followers: {this.state.user.followers}</p>
-						<p>Following: {this.state.user.following}</p>
-					</>
+					<Card>
+						<Image
+							src={this.state.user.avatar_url}
+							alt="user profile"
+							wrapped
+							ui={false}
+						/>
+						<Card.Content>
+							<Card.Header>{this.state.user.name}</Card.Header>
+							<Card.Meta>
+								<span className="date">From {this.state.user.location}</span>
+							</Card.Meta>
+							<Card.Content extra>
+								<>
+									<Icon name="user" />
+									{this.state.user.following} Following
+								</>
+							</Card.Content>
+						</Card.Content>
+					</Card>
 				)}
 			</>
 		);
