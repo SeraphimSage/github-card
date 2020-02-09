@@ -26,6 +26,15 @@ class App extends Component {
 	render() {
 		return (
 			<>
+				<form>
+					GitHub Username:
+					<br></br>
+					<input type="text" name="gitHubUserName"></input>
+					<br></br>
+					<Button type="submit" value="submit">
+						Submit
+					</Button>
+				</form>
 				<Button onClick={this.handleToggle}>Toggle User</Button>
 				{this.state.active && (
 					<Card>
